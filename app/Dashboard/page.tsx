@@ -1,9 +1,9 @@
 import React from 'react'
 
-const dashbaord = () => {
+const dashboard = () => {
   return (
     <div>dashbaord page</div>
   )
 }
 
-export default dashbaord
+export default dashboard
