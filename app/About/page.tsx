@@ -1,15 +1,29 @@
 import React from "react";
 import Image from "next/image";
 
-const AboutPage = () => {
-  return (
-    <div>
-      <h1 className="text-center text-red-500 text-2xl">
-        hello everyone this is my website
-        <Image className="" src={'https://images.unsplash.com/photo-1773332611528-566f16120979?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8'} width={200} height={200} alt="cover" />
-      </h1>
-    </div>
-  );
+const AboutPage = async () => {
+    const response = await fetch('https://dummyjson.com/products')
+    const data = await response.json()
+    console.log(data);
+    return (
+        <div>
+            <h1>hello world</h1>
+            {
+                <div className="grid">
+                    {
+                        data.products?.map((prod: any) => (
+
+                            <>
+                                <h1>{prod.title}</h1>
+                                <img src={prod.thumbnail} alt="" />
+                            </>
+                        )).slice(0, 5)
+                    }
+                </div>
+
+            }
+        </div>
+    );
 };
 
 export default AboutPage;
