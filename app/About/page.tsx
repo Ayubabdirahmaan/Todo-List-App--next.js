@@ -11,13 +11,7 @@ const AboutPage = async () => {
             {
                 <div className="grid">
                     {
-                        data.products?.map((prod: any) => (
-
-                            <>
-                                <h1>{prod.title}</h1>
-                                <img src={prod.thumbnail} alt="" />
-                            </>
-                        )).slice(0, 5)
+                    
                     }
                 </div>
 
