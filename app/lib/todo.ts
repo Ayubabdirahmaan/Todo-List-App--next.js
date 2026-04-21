@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { createTodoInput, Todo } from "../types/todo";
+import { createTodoInput, Todo, updateTodoInput } from "../types/todo";
 import { getTodoCollection } from "./db";
 // fetch todos all todos
 export async function fetchTodos(): Promise<Todo[]> {
@@ -45,12 +45,34 @@ export async function fetchTodoById(id: string): Promise<Todo | null> {
 
 export async function createTodo(todo: createTodoInput): Promise<string | null> {
     try {
-        const collection = await  getTodoCollection()
+        const collection = await getTodoCollection()
         const result = await collection.insertOne(todo)
         return result.insertedId.toString()
-        
+
     } catch (error) {
         console.error('error creared todo', error)
         return null
+    }
+}
+
+export async function updateTodo(id: string, todo: updateTodoInput) : Promise<boolean> {
+    try {
+        const collection = await getTodoCollection()
+        const result = await collection.updateOne({_id: new ObjectId(id)}, {$set: todo})
+        return result.modifiedCount > 0
+    } catch (error) {
+        console.error('Error updating todo:', error)
+        return false
+    }
+}
+
+export async function deleteTodo(id: string) : Promise<boolean> {
+    try {
+        const collection = await getTodoCollection()
+        const result = await collection.deleteOne({_id: new ObjectId(id)})
+        return result.deletedCount > 0
+    } catch (error) {
+        console.error('Error deleting todo:', error)
+        return false
     }
 }

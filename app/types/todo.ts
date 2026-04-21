@@ -11,7 +11,7 @@ export type createTodoInput = {
     completed?: boolean
 }
 
-export type updateTodo = {
+export type updateTodoInput = {
     title?: string,
     completed?: boolean
 }
