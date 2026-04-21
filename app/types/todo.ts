@@ -6,7 +6,7 @@ export type Todo = {
     updatedAt?: string
 }
 
-export type createTodo = {
+export type createTodoInput = {
     title: string,
     completed?: boolean
 }
