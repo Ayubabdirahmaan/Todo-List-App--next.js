@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { fetchTodos } from "./lib/todo";
 import { deletedTodo } from "./action/delete";
+import { toggleTodo } from "./action/toggle";
 
 export default async function Home() {
   const todos = await fetchTodos()
@@ -30,8 +31,13 @@ export default async function Home() {
               {
                 todos.map(todo => (
                   <div key={todo._id} className="flex items-center justify-between bg-gray-50 border border-gray-200 rounded-lg p-4">
+                    <div className="flex items-center space-x-3">
+                    <form action={toggleTodo.bind(null, todo._id)}>
+                      <button type="submit" className="text-2xl hover:scale-110 transition-transform">{todo.completed ? '✅' : '◻️'}</button>
+                    </form>
                     <div>
                       <span className={`flex-1 text-lg ${todo.completed ? 'line-through text-gray-500' : 'text-gray-800]'}`}>{todo.title}</span>
+                    </div>
                     </div>
 
                     <div className="flex items-center space-x-2">
