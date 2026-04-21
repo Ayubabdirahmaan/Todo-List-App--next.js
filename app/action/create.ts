@@ -11,7 +11,7 @@ export async function createTodoAction(formData: FormData) {
         return
     }
 
-    const todoId = await createTodo({ title : title.trim() })
+    const todoId = await createTodo({ title : title.trim() , createdAt: new Date().toISOString() , updatedAt: new Date().toISOString() })
 
     if (!todoId) {
         return

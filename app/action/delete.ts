@@ -5,13 +5,15 @@ import { deleteTodo } from "../lib/todo"
 
 export async function deletedTodo(id: string) {
     if (!id) {
-        return 'Todo ID is required'
+        console.error('Todo ID is required')
+        return 
     }
 
     const success = await deleteTodo(id)
 
     if (!success) {
-        return 'Failed to delete todo'
+        console.log('Failed to delete todo')
+        return 
     }
 
     revalidatePath('/')

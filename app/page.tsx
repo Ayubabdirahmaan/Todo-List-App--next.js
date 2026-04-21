@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { fetchTodos } from "./lib/todo";
+import { deletedTodo } from "./action/delete";
 
 export default async function Home() {
   const todos = await fetchTodos()
@@ -38,7 +39,7 @@ export default async function Home() {
                         ✏️
                       </Link>
 
-                      <form>
+                      <form action={deletedTodo.bind(null, todo._id)}>
                         <button type="submit" className="p-2 rose-600 hover:bg-rose-100 rounded-md transition-colors" title="Delete todo">🗑️</button>
                       </form>
                     </div>

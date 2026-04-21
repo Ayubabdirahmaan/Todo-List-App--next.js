@@ -11,8 +11,8 @@ export async function fetchTodos(): Promise<Todo[]> {
             _id: todo._id.toString(),
             title: todo.title,
             completed: todo.completed,
-            createdAt: todo.createdAt?.toISOString(),
-            updatedAt: todo.updatedAt?.toISOString()
+            createdAt: todo.createdAt,
+            updatedAt: todo.updatedAt
         }));
     } catch (error) {
         console.error('Error fetching todos:', error)
@@ -32,8 +32,8 @@ export async function fetchTodoById(id: string): Promise<Todo | null> {
             _id: todo._id.toString(),
             title: todo.title,
             completed: todo.completed,
-            createdAt: todo.createdAt?.toISOString(),
-            updatedAt: todo.updatedAt?.toISOString()
+            createdAt: todo.createdAt,
+            updatedAt: todo.updatedAt
 
         }
     } catch (error) {

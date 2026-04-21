@@ -9,6 +9,8 @@ export type Todo = {
 export type createTodoInput = {
     title: string,
     completed?: boolean
+    createdAt: string
+    updatedAt: string
 }
 
 export type updateTodoInput = {
