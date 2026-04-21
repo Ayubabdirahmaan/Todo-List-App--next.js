@@ -5,16 +5,16 @@ import { createTodo } from "../lib/todo"
 import { redirect } from "next/navigation"
 
 export async function createTodoAction(formData: FormData) {
-    const title =  formData.get('title') as string
+    const title = formData.get('title') as string
 
-    if(title || title.trim().length === 0) {
-        return 'Title is required'
+    if (!title || title.trim().length === 0) {
+        return
     }
 
-    const todoId = await createTodo({title: title.trim()})
+    const todoId = await createTodo({ title : title.trim() })
 
-    if(!todoId) {
-        return 'Failed to create todo'
+    if (!todoId) {
+        return
     }
 
     revalidatePath('/')

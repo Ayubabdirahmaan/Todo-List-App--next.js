@@ -1,9 +1,9 @@
 
 import type { Metadata } from "next";
-import { Supermercado_One } from "next/font/google";
+import { Roboto_Mono } from "next/font/google";
 import './globals.css';
 
-const myFonts = Supermercado_One({
+const myFonts = Roboto_Mono({
     subsets: ['latin'],
     display : "swap",
     weight: ['400']

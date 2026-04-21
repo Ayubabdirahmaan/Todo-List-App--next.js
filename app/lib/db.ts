@@ -13,7 +13,8 @@ export async function connectToDatabase() {
     if(!client) {
             client = new MongoClient(uri as string)
             await client.connect();
-            db = client.db('todo_application')
+            db = client.db('todoApplication')
+               console.log("Connected to DB:", db);
     }
     return {client, db}
 }
@@ -21,7 +22,9 @@ export async function connectToDatabase() {
 export async function getTodoCollection(): Promise<Collection> {
     if(!db) {
         const {db: database} = await connectToDatabase()
+     
         return database.collection('todos')
+        
     }
-    return db.collection('tods')
+    return db.collection('todos')
 }

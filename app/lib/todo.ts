@@ -5,13 +5,13 @@ import { getTodoCollection } from "./db";
 export async function fetchTodos(): Promise<Todo[]> {
     try {
         const collection = await getTodoCollection();
-        const todos = await collection.find().toArray();
+        const todos = await collection.find().sort({createdAt : -1}).toArray();
 
         return todos.map((todo) => ({
             _id: todo._id.toString(),
             title: todo.title,
             completed: todo.completed,
-            createdAt: todo.createdAt.toISOString(),
+            createdAt: todo.createdAt?.toISOString(),
             updatedAt: todo.updatedAt?.toISOString()
         }));
     } catch (error) {
@@ -32,7 +32,7 @@ export async function fetchTodoById(id: string): Promise<Todo | null> {
             _id: todo._id.toString(),
             title: todo.title,
             completed: todo.completed,
-            createdAt: todo.createdAt.toISOString(),
+            createdAt: todo.createdAt?.toISOString(),
             updatedAt: todo.updatedAt?.toISOString()
 
         }
